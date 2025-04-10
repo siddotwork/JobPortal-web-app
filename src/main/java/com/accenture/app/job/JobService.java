@@ -1,7 +1,6 @@
-package com.accenture.app.Job;
+package com.accenture.app.job;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,7 +13,8 @@ public interface JobService {
 
     Job getJobById(Long id);
 
-    void removeJobById(Long id);
+    boolean removeJobById(Long id);
 
-    void updateJobById(Long id, Job modifiedEntry);
+    boolean updateJobById(Long id, Job modifiedEntry);
+
 }

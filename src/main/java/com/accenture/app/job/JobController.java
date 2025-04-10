@@ -1,4 +1,4 @@
-package com.accenture.app.Job;
+package com.accenture.app.job;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class JobController {
+public class  JobController {
     @Autowired
     private JobService jobService;
 
@@ -30,7 +30,7 @@ public class JobController {
     public ResponseEntity<?> createJob(@RequestBody Job job) {
         if (job != null) {
             jobService.createJob(job);
-            return new ResponseEntity<>(job, HttpStatus.CREATED);
+            return new ResponseEntity<>("Job created successfully", HttpStatus.CREATED);
         }
 
         return new ResponseEntity<>("Unable to add entry", HttpStatus.BAD_REQUEST);
