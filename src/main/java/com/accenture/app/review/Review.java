@@ -1,7 +1,6 @@
-package com.accenture.app.company;
+package com.accenture.app.review;
 
-import com.accenture.app.job.Job;
-import com.accenture.app.review.Review;
+import com.accenture.app.company.Company;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,28 +8,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class Company {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String title;
     private String description;
-    @OneToMany(mappedBy = "company")
+    private double rating;
+    @ManyToOne
     @JsonIgnore
-    private List<Job>jobs;
-
-    @OneToMany(mappedBy = "company")
-    private List<Review>reviews;
-
-//    private List<Reviews>reviews;
-
-
+    private Company company;
 }

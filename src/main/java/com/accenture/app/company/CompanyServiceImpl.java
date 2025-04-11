@@ -1,8 +1,5 @@
-package com.accenture.app.company.impl;
+package com.accenture.app.company;
 
-import com.accenture.app.company.Company;
-import com.accenture.app.company.CompanyRepository;
-import com.accenture.app.company.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
