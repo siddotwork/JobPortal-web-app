@@ -20,7 +20,6 @@ public class CompanyServiceImpl implements CompanyService {
         Optional<Company>companyOptional=repository.findById(id);
         if (companyOptional.isPresent()){
             Company comp=companyOptional.get();
-            comp.setId(company.getId());
             comp.setDescription(company.getDescription());
             comp.setName(company.getName());
             comp.setJobs(company.getJobs());

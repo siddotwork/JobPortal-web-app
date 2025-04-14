@@ -24,6 +24,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Review createReview(Long companyId, Review review) {
         Company company = companyService.findCompanyById(companyId);
+        System.out.println(company.getName());
 
         if (company != null) {
             review.setCompany(company);
@@ -41,19 +42,21 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public boolean updateReviewById(Review review, Long companyId,Long reviewId) {
-       if (companyService.findCompanyById(companyId)!=null){
-           review.setCompany(companyService.findCompanyById(companyId));
-           review.setId(reviewId);
-           repository.save(review);
-           return true;
-       }
-       return false;
+    public boolean updateReviewById(Review review, Long companyId, Long reviewId) {
+        Review retrivedReview = companyService.findCompanyById(companyId).getReviews().stream().filter(x -> repository.existsById(reviewId)).findFirst().get();
+        if (retrivedReview!=null) {
+            retrivedReview.setDescription(review.getDescription());
+            retrivedReview.setRating(review.getRating());
+            retrivedReview.setTitle(review.getTitle());
+            repository.save(retrivedReview);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public boolean deleteReviewById(Long companyId,Long reviewId) {
-        if(companyService.findCompanyById(companyId)!=null&&repository.existsById(reviewId)){
+    public boolean deleteReviewById(Long companyId, Long reviewId) {
+        if (companyService.findCompanyById(companyId) != null && repository.existsById(reviewId)) {
             repository.deleteById(reviewId);
             return true;
         }
